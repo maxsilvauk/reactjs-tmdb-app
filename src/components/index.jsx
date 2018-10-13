@@ -1,6 +1,5 @@
 import DisplayMsg from './DisplayMsg';
 import Title from './Title';
-import SubTitle from './SubTitle';
 import Poster from './Poster';
 import Description from './Description';
 import MovieInfo from './MovieInfo';
@@ -15,7 +14,6 @@ export {
   Description,
   MovieInfo,
   Title,
-  SubTitle,
   Trailer,
   TrailerList
 };
