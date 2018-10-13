@@ -6,9 +6,9 @@
   </a>
 </p>
 <p align="center">
-    <img src="https://img.shields.io/badge/npm-v5.6.0^-green.svg" />
-    <img src="https://img.shields.io/badge/yarn-v1.7.0^-green.svg" /
-    <img src="https://img.shields.io/badge/node-v9.8.0^-green.svg" />>
+    <img src="https://img.shields.io/badge/npm-v5.6.0-green.svg" />
+    <img src="https://img.shields.io/badge/yarn-v1.7.0-green.svg" />
+    <img src="https://img.shields.io/badge/node-v9.8.0-green.svg" />
     <img src="https://img.shields.io/badge/react-v15.4.1-green.svg" />
 </p>
 
@@ -21,7 +21,7 @@
 
 ## Introduction
 
-A React 15.4.1 movie listings application. Data sourced from [O](https://www.themoviedb.org). This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app) which has been built by the ReactJS devs. The project makes use of [ES6](https://github.com/lukehoban/es6features) syntax features.
+A React 15.4.1 TMDB movie listing application. Data sourced from [TMDB](https://www.themoviedb.org). This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app) which has been built by the ReactJS devs.
 
 ## Features
 
@@ -48,9 +48,9 @@ A React 15.4.1 movie listings application. Data sourced from [O](https://www.the
 
 ## Install
 
-* Clone my Git <a href="https://github.com/maxsilvauk/reactjs-movies-app.git">repository</a> into your htdocs.
+* Clone my Git <a href="https://github.com/maxsilvauk/reactjs-tmdb-app.git">repository</a> into your htdocs.
 ```
-git clone https://github.com/maxsilvauk/reactjs-movies-app.git
+git clone https://github.com/maxsilvauk/reactjs-tmdb-app.git
 ```
 * Move to the reactjs-weather-app root folder.
 * Install node dependancies with yarn
