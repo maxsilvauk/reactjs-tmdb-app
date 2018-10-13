@@ -51,15 +51,22 @@ export default function Poster(props) {
   }
 
   const percent = {
-    fontSize: '10px'
+    fontSize: '10px',
+    marginLeft: '1px'
   }
+
+  const genres = props.genres.map((genre) => {
+    return <li key={genre}>{genre}</li>
+  })
 
   return (<StyledImg>
     <Overlay></Overlay>
     <Image key={props.id} src={URL_IMG + IMG_SIZE_LARGE + props.path} responsive="true"/> {
       props.info && <Info className="title">
-          <span style={popularity}><FontAwesomeIcon icon="smile"/> {Math.round(props.popularity)}
-            <FontAwesomeIcon icon="percent" style={percent}/></span>
+          {genres}
+          <span style={popularity}>
+            <FontAwesomeIcon icon="smile"/> {Math.round(props.popularity)}<FontAwesomeIcon icon="percent" style={percent}/>
+          </span>
           <h4>{props.title}</h4>
         </Info>
     }

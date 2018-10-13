@@ -33,7 +33,7 @@ class MovieDetail extends Component {
       return (<Grid fluid={false}>
         <Row>
           <Col xs={12} sm={6} md={4}>
-            <Poster id={movie.id} path={movie.poster_path} responsive="responsive"/>
+            <Poster id={movie.id} path={movie.poster_path} responsive="responsive" genres={movie.genres}/>
           </Col>
           <Col xs={12} sm={6} md={8}>
             <MovieInfo movie={movie}/>
