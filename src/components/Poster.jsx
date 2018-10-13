@@ -55,13 +55,24 @@ export default function Poster(props) {
     marginLeft: '1px'
   }
 
-  const genreStyle = {
-    listStyleType: 'none',
-    display: 'inline-block'
-  }
+  const listStyle = {
+    'listStyleType': 'none',
+    'padding': '0px',
+    'marginTop': '6px',
+    'marginBottom': '6px',
+    'fontSize': '12px'
+  };
+
+  const itemStyle = {
+    'display': 'inline-block',
+    'marginRight': '5px',
+  };
+
 
   const genres = props.genres.map((genre, i) => {
-    return <li style={genreStyle} key={genre}>{genre} {i === props.genres.length - 1 ? '' : ', '}</li>
+    return (
+        <li style={itemStyle} key={i}>{genre}{i === props.genres.length - 1 ? '' : ','} </li>
+    )
   })
 
   return (<Movie>
@@ -71,7 +82,9 @@ export default function Poster(props) {
         <span style={popularity}>
           <FontAwesomeIcon icon="smile"/> {Math.round(props.popularity)}<FontAwesomeIcon icon="percent" style={percent}/>
         </span>
-        {genres}
+        <ul style={listStyle}>
+          {genres}
+        </ul>
         <h4>{props.title}</h4>
       </Info>
     }
