@@ -44,8 +44,8 @@
 }
 
 .react-autosuggest__suggestions-container--open {
-  -webkit-animation: fadeIn 0.5s;
-  animation: fadeIn 0.5s;
+  -webkit-animation: fadeIn 0.25s;
+  animation: fadeIn 0.25s;
   display: block;
   position: absolute;
   top: 51px;
