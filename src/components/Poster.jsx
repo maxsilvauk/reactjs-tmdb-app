@@ -10,7 +10,7 @@ library.add({faSmile, faPercent})
 
 export default function Poster(props) {
 
-  const StyledImg = styled.div `
+  const Movie = styled.div `
     .title {
        opacity: 1;
        font-weight:normal;
@@ -43,7 +43,7 @@ export default function Poster(props) {
       opacity: 0;
       transition: opacity 0.5s;
       -webkit-transition: opacity 0.5s;
-    }
+  }
   `;
 
   const popularity = {
@@ -55,20 +55,25 @@ export default function Poster(props) {
     marginLeft: '1px'
   }
 
-  const genres = props.genres.map((genre) => {
-    return <li key={genre}>{genre}</li>
+  const genreStyle = {
+    listStyleType: 'none',
+    display: 'inline-block'
+  }
+
+  const genres = props.genres.map((genre, i) => {
+    return <li style={genreStyle} key={genre}>{genre} {i === props.genres.length - 1 ? '' : ', '}</li>
   })
 
-  return (<StyledImg>
+  return (<Movie>
     <Overlay></Overlay>
     <Image key={props.id} src={URL_IMG + IMG_SIZE_LARGE + props.path} responsive="true"/> {
       props.info && <Info className="title">
-          {genres}
-          <span style={popularity}>
-            <FontAwesomeIcon icon="smile"/> {Math.round(props.popularity)}<FontAwesomeIcon icon="percent" style={percent}/>
-          </span>
-          <h4>{props.title}</h4>
-        </Info>
+        <span style={popularity}>
+          <FontAwesomeIcon icon="smile"/> {Math.round(props.popularity)}<FontAwesomeIcon icon="percent" style={percent}/>
+        </span>
+        {genres}
+        <h4>{props.title}</h4>
+      </Info>
     }
-  </StyledImg>);
+  </Movie>);
 }

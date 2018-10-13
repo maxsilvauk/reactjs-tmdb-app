@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {MovieList, DisplayMsg} from '../components';
 import {connect} from 'react-redux';
-import {fetchMovieList, searchMovieList} from '../actions';
+import {fetchMovieList, fetchGenresList, searchMovieList} from '../actions';
 
 class MovieContainer extends Component {
 
@@ -9,6 +9,7 @@ class MovieContainer extends Component {
     if (!this.props.params.keyword) {
       const {dispatch} = this.props;
       dispatch(fetchMovieList());
+      dispatch(fetchGenresList());
     }
   }
 
@@ -16,6 +17,7 @@ class MovieContainer extends Component {
     const {dispatch} = this.props;
     if (nextProps.params.keyword && this.props.params.keyword !== nextProps.params.keyword) {
       dispatch(searchMovieList(nextProps.params.keyword));
+      dispatch(fetchGenresList(nextProps.params.keyword));
     }
   }
 
@@ -27,10 +29,10 @@ class MovieContainer extends Component {
   }
 
   render() {
-    const {movies} = this.props;
-    console.log('MOVIES', movies)
-    if (movies.length > 0) {
-      return (<MovieList movies={movies}/>);
+    const {movies, genres} = this.props;
+
+    if (movies.length > 0 && genres.length > 0) {
+      return (<MovieList movies={movies} genres={genres}/>);
     } else {
       return (<DisplayMsg/>);
     }
@@ -38,11 +40,18 @@ class MovieContainer extends Component {
 }
 
 function mapStateToProps(state, ownProps) {
-  const {movieList} = state;
+  const {movieList, genresList} = state;
+
+  const {isFetcing_genresList, items: genres, error_genresList} = genresList; // eslint-disable-line
   const {isFetcing_movieList, items: movies, error_movieList} = movieList; // eslint-disable-line
 
   const keyword = ownProps.params.keyword;
-  return {movies, keyword}
+
+  return {
+    movies,
+    genres,
+    keyword
+  }
 }
 
 export default connect(mapStateToProps)(MovieContainer);

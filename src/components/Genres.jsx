@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Genres(genres){
+export default function Genres(genres) {
   const listStyle = {
     'listStyleType': 'none',
     'padding': '0px'

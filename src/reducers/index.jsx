@@ -2,14 +2,15 @@ import {combineReducers} from 'redux'
 import {routerReducer} from 'react-router-redux'
 
 import {
+  FETCH_GENRES,
+  FETCH_GENRES_SUCCESS,
+  FETCH_GENRES_FAILURE,
   FETCH_MOVIES,
   FETCH_MOVIES_SUCCESS,
   FETCH_MOVIES_FAILURE,
   FETCH_MOVIE,
   FETCH_MOVIE_SUCCESS,
   FETCH_MOVIE_FAILURE,
-  FETCH_STAR_SUCCESS,
-  FETCH_STAR_FAILURE,
   FETCH_TRAILERS,
   FETCH_TRAILERS_SUCCESS,
   FETCH_TRAILERS_FAILURE,
@@ -23,6 +24,30 @@ const defaultStateList = {
   isFetching: false,
   items: [],
   error: {}
+};
+
+const genresList = (state = defaultStateList, action) => {
+  switch (action.type) {
+    case FETCH_GENRES:
+      return {
+        ...state,
+        isFetching: true
+      };
+    case FETCH_GENRES_SUCCESS:
+      return {
+        ...state,
+        isFetching: false,
+        items: action.data
+      };
+    case FETCH_GENRES_FAILURE:
+      return {
+        ...state,
+        isFetching: false,
+        error: action.data
+      };
+    default:
+      return state;
+  }
 };
 
 const movieList = (state = defaultStateList, action) => {
@@ -96,23 +121,6 @@ const movieDetail = (state = defaultState, action) => {
   }
 };
 
-const starDetail = (state = defaultState, action) => {
-  switch (action.type) {
-    case FETCH_STAR_SUCCESS:
-      return Object.assign({}, state, {
-        isFetching: false,
-        item: action.data
-      });
-    case FETCH_STAR_FAILURE:
-      return Object.assign({}, state, {
-        isFetching: false,
-        error: action.data
-      });
-    default:
-      return state;
-  }
-};
-
 const input = (state = '', action) => {
   switch (action.type) {
     case ENTER_SEARCH_TEXT:
@@ -124,9 +132,9 @@ const input = (state = '', action) => {
 
 const movieApp = combineReducers({
   movieList,
+  genresList,
   trailerList,
   movieDetail,
-  starDetail,
   input,
   routing: routerReducer
 });
