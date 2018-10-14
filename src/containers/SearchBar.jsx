@@ -129,7 +129,7 @@ class SearchBar extends Component {
         <Autosuggest style={searchBoxStyle} suggestions={suggestions} onSuggestionsFetchRequested={this.onSuggestionsFetchRequested} onSuggestionSelected={this.onSuggestionSelected} onSuggestionsClearRequested={this.onSuggestionsClearRequested} getSuggestionValue={this.getSuggestionValue} renderSuggestion={this.renderSuggestion} inputProps={inputProps}/>
       </Navbar.Form>
       <Nav pullRight>
-        <NavDropdown eventKey={3} title="Filter Genres">
+        <NavDropdown eventKey={3} id="filterGenres" title="Filter Genres">
           <MenuItem eventKey={3.1}>Action</MenuItem>
           <MenuItem eventKey={3.2}>Another action</MenuItem>
           <MenuItem eventKey={3.3}>Something else here</MenuItem>
