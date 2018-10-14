@@ -68,7 +68,6 @@ export default function Poster(props) {
     'marginRight': '5px',
   };
 
-
   const genres = props.genres.map((genre, i) => {
     return (
         <li style={itemStyle} key={i}>{genre}{i === props.genres.length - 1 ? '' : ','} </li>
@@ -77,7 +76,7 @@ export default function Poster(props) {
 
   return (<Movie>
     <Overlay></Overlay>
-    <Image key={props.id} src={URL_IMG + IMG_SIZE_LARGE + props.path} responsive="true"/> {
+    <Image key={props.id} src={URL_IMG + IMG_SIZE_LARGE + props.path} responsive className="poster"/> {
       props.info && <Info className="title">
         <span style={popularity}>
           <FontAwesomeIcon icon="smile"/> {Math.round(props.popularity)}<FontAwesomeIcon icon="percent" style={percent}/>

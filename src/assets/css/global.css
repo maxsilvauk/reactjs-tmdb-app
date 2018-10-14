@@ -49,3 +49,17 @@ h1 {
 .trailer {
   margin-right:10px;
 }
+
+.checkbox {
+  margin: 0;
+}
+
+.poster {
+  opacity: 1;
+  -webkit-transition: opacity 0.5s ease-in;
+  -moz-transition: opacity 0.5s ease-in;
+  -o-transition: opacity 0.5s ease-in;
+  -ms-transition: opacity 0.5s ease-in;
+  transition: opacity 0.5s ease-in;
+
+}

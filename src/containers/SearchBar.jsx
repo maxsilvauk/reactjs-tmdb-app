@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import { Navbar, Nav, NavDropdown, MenuItem, Image } from 'react-bootstrap/lib'
+import { Navbar, Nav, NavDropdown, MenuItem, Image, FormGroup, Checkbox } from 'react-bootstrap/lib'
 import logo from '../assets/images/themoviedb_green.svg'
 import theme from '../assets/css/search.css' // eslint-disable-line
 import {connect} from 'react-redux'
@@ -130,9 +130,12 @@ class SearchBar extends Component {
       </Navbar.Form>
       <Nav pullRight>
         <NavDropdown eventKey={3} id="filterGenres" title="Filter Genres">
-          <MenuItem eventKey={3.1}>Action</MenuItem>
-          <MenuItem eventKey={3.2}>Another action</MenuItem>
-          <MenuItem eventKey={3.3}>Something else here</MenuItem>
+          <MenuItem eventKey={3.1}>
+            <Checkbox checked readOnly>Genre 1</Checkbox>
+          </MenuItem>
+          <MenuItem eventKey={3.2}>
+            <Checkbox checked readOnly>Genre 2</Checkbox>
+          </MenuItem>
         </NavDropdown>
       </Nav>
     </Navbar>);
