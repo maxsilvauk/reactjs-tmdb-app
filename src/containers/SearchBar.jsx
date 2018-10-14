@@ -1,10 +1,10 @@
 import React, {Component} from 'react'
 import { Navbar, Image } from 'react-bootstrap/lib'
-import logo from '../images/themoviedb_green.svg'
+import logo from '../assets/images/themoviedb_green.svg'
+import theme from '../assets/css/search.css' // eslint-disable-line
 import {connect} from 'react-redux'
 import {push} from 'react-router-redux'
 import Autosuggest from 'react-autosuggest'
-import theme from './search.css' // eslint-disable-line
 import {URL_SEARCH, API_KEY_ALT, URL_IMG, IMG_SIZE_XSMALL} from '../const';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
