@@ -13,7 +13,8 @@ import {composeWithDevTools} from 'redux-devtools-extension';
 import {MovieContainer, MovieDetail} from './containers';
 import {DisplayMsg} from './components';
 
-import './App.css';
+import './assets/css/global.css';
+import './assets/css/nav.css';
 
 const routeMiddleware = routerMiddleware(browserHistory);
 let store = createStore(movieApp, composeWithDevTools(applyMiddleware(thunkMiddleware, routeMiddleware)));

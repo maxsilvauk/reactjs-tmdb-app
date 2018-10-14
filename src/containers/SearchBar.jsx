@@ -110,7 +110,7 @@ class SearchBar extends Component {
     return (<Navbar bsStyle='inverse'>
       <Navbar.Header>
         <Navbar.Brand>
-          <a href="/"><Image src={logo}/></a>
+          <a href="/"><Image src={logo} id="logo"/></a>
         </Navbar.Brand>
       </Navbar.Header>
       <Nav pullRight>
