@@ -13,6 +13,13 @@ export default function DisplayMsg(props) {
     color: '#30d673'
   }
 
+  const errorIconStyle = {
+    position: 'fixed',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)'
+  }
+
   const errorMsgTitleStyle = {
     display: 'block',
     fontSize: '40px',
@@ -33,7 +40,7 @@ export default function DisplayMsg(props) {
 
   if (!props.hasOwnProperty('message')) {
     return (
-      <div id="not-found"><FontAwesomeIcon icon="dizzy" style={iconStyle} />
+      <div style={errorIconStyle}><FontAwesomeIcon icon="dizzy" style={iconStyle} />
       <p style={errorMsgTitleStyle}>Whooops!</p>
       <p style={errorMsgBodyStyle}>TMDB API is being really slow or there have been too many requests please try again!</p></div>
     );
