@@ -9,7 +9,6 @@ export default function Genres(genres) {
   const itemStyle = {
     'display': 'inline-block',
     'marginRight': '10px',
-    'marginBottom': '20%'
   };
 
   return(
