@@ -11,22 +11,27 @@ export default class MovieList extends Component {
       flexWrap: 'wrap'
     }
 
-    let genres = this.props.genres
-    let movies = this.props.movies.filter(function(movie) {
-      return movie.poster_path != null;
-    }).map(function(movie) {
-      let genreNames = [];
+    const genreNames = (movie) => {
+      let movieGenres = [];
+      let genres = this.props.genres
       genres.forEach(function(genre, i) {
         movie.genre_ids.forEach(function(movGenId, i) {
           if (movGenId == genre.id) {
-            genreNames.push(genre.name)
+            movieGenres.push(genre.name)
           }
         });
       });
+      return movieGenres;
+    }
+
+    let movies = this.props.movies.filter(function(movie) {
+      return movie.poster_path != null;
+    }).map(function(movie) {
+      let genres = genreNames(movie)
 
       return (<Col xs={6} sm={4} md={2} key={movie.id}>
         <Link to={'/movie/' + movie.id}>
-          <Poster info="info" id={movie.id} path={movie.poster_path} title={movie.title} popularity={movie.popularity} genres={genreNames} responsive="responsive"/>
+          <Poster info="info" id={movie.id} path={movie.poster_path} title={movie.title} popularity={movie.popularity} genres={genres} responsive="responsive"/>
         </Link>
       </Col>);
     });
