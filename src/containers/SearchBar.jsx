@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import { Navbar, Image } from 'react-bootstrap/lib'
+import { Navbar, Nav, NavDropdown, MenuItem, Image } from 'react-bootstrap/lib'
 import logo from '../assets/images/themoviedb_green.svg'
 import theme from '../assets/css/search.css' // eslint-disable-line
 import {connect} from 'react-redux'
@@ -8,9 +8,9 @@ import Autosuggest from 'react-autosuggest'
 import {URL_SEARCH, API_KEY_ALT, URL_IMG, IMG_SIZE_XSMALL} from '../const';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import { faSearch, faFilter } from '@fortawesome/free-solid-svg-icons'
 
-library.add(faSearch)
+library.add({faSearch, faFilter})
 
 class SearchBar extends Component {
 
@@ -90,17 +90,8 @@ class SearchBar extends Component {
   };
 
   render() {
-
-    const imgStyle = {
-      height: '50px',
-      width: 'auto',
-      paddingTop: '8px',
-      paddingLeft: '10px',
-      marginTop: '-8px',
-      display: 'inline-block'
-    };
-
     const {value, suggestions} = this.state;
+
     const inputProps = {
       value,
       onChange: this.onChange,
@@ -119,13 +110,20 @@ class SearchBar extends Component {
     return (<Navbar bsStyle='inverse'>
       <Navbar.Header>
         <Navbar.Brand>
-          <a href="/"><Image style={imgStyle} src={logo}/></a>
+          <a href="/"><Image src={logo}/></a>
         </Navbar.Brand>
       </Navbar.Header>
-      <Navbar.Form pullRight>
+      <Nav pullRight>
+        <NavDropdown eventKey={3} title="Filter Genres">
+          <MenuItem eventKey={3.1}>Action</MenuItem>
+          <MenuItem eventKey={3.2}>Another action</MenuItem>
+          <MenuItem eventKey={3.3}>Something else here</MenuItem>
+        </NavDropdown>
+        <Navbar.Form>
           <FontAwesomeIcon icon="search" style={searchIconStyle} />
           <Autosuggest style={searchBoxStyle} suggestions={suggestions} onSuggestionsFetchRequested={this.onSuggestionsFetchRequested} onSuggestionSelected={this.onSuggestionSelected} onSuggestionsClearRequested={this.onSuggestionsClearRequested} getSuggestionValue={this.getSuggestionValue} renderSuggestion={this.renderSuggestion} inputProps={inputProps}/>
-      </Navbar.Form>
+        </Navbar.Form>
+      </Nav>
     </Navbar>);
 
   }

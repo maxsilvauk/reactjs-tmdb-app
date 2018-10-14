@@ -13,7 +13,6 @@ import {composeWithDevTools} from 'redux-devtools-extension';
 import {MovieContainer, MovieDetail} from './containers';
 import {DisplayMsg} from './components';
 
-import './index.css';
 import './App.css';
 
 const routeMiddleware = routerMiddleware(browserHistory);
