@@ -5,6 +5,7 @@ import theme from '../assets/css/search.css' // eslint-disable-line
 import {connect} from 'react-redux'
 import {push} from 'react-router-redux'
 import Autosuggest from 'react-autosuggest'
+import Genres from '../helpers/Genres';
 import {URL_SEARCH, API_KEY_ALT, URL_IMG, IMG_SIZE_XSMALL} from '../const';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -105,6 +106,16 @@ class SearchBar extends Component {
 
     const searchBoxStyle = {
       display: 'inline-block'
+    }
+
+    console.log(this.props)
+
+    const max = {
+      // let movies = this.props.movies.filter(function(movie) {
+      //   return;
+      // }).map(function(movie) {
+      //
+      // });
     }
 
     return (<Navbar bsStyle='inverse'>
