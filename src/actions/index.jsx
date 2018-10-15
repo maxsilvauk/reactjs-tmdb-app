@@ -131,8 +131,6 @@ function fetchTrailersFail(error) {
 export function searchMovieList(keyword) {
   let url = URL_SEARCH + keyword + API_KEY_ALT;
 
-  console.log('WE GET HERE')
-
   return function(dispatch){
     dispatch(searchMovie())
     return fetch(url)
@@ -143,6 +141,11 @@ export function searchMovieList(keyword) {
   }
 }
 
+const _onSetGenresSession = (dispatch, data) => {
+  sessionStorage.setItem('genres', JSON.stringify(data));
+  dispatch(fetchGenresSuccess(data))
+}
+
 export function fetchGenresList() {
   const url = URL_GENRES + API_KEY;
 
@@ -151,9 +154,14 @@ export function fetchGenresList() {
     return fetch(url)
       .then(response => response.json())
       .then(json => json.genres)
-      .then(data => dispatch(fetchGenresSuccess(data)))
+      .then(data => _onSetGenresSession(dispatch, data))
       .catch(error => dispatch(fetchGenresFail(error)))
   }
+}
+
+const _onSetMoviesListSession = (dispatch, data) => {
+  sessionStorage.setItem('movies', JSON.stringify(data));
+  dispatch(fetchMoviesSuccess(data))
 }
 
 export function fetchMovieList(option) {
@@ -164,7 +172,7 @@ export function fetchMovieList(option) {
     return fetch(url)
       .then(response => response.json())
       .then(json => json.results)
-      .then(data => dispatch(fetchMoviesSuccess(data)))
+      .then(data => _onSetMoviesListSession(dispatch, data))
       .catch(error => dispatch(fetchMoviesFail(error)))
   }
 }

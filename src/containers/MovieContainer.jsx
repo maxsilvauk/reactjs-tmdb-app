@@ -18,7 +18,6 @@ class MovieContainer extends Component {
     const {dispatch} = this.props;
     if (nextProps.params.keyword && this.props.params.keyword !== nextProps.params.keyword) {
       dispatch(searchMovieList(nextProps.params.keyword));
-      dispatch(fetchGenresList(nextProps.params.keyword));
     }
   }
 

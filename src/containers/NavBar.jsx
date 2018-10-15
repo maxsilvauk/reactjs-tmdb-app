@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
-import { Navbar, Nav, NavDropdown, MenuItem, Image, FormGroup, Checkbox } from 'react-bootstrap/lib'
+import Genres from '../helpers/Genres';
+import { Navbar, Nav, NavDropdown, MenuItem, Image, Checkbox } from 'react-bootstrap/lib'
 import logo from '../assets/images/themoviedb_green.svg'
 import {connect} from 'react-redux'
 import {push} from 'react-router-redux'
@@ -8,7 +9,6 @@ import {URL_SEARCH, API_KEY_ALT, URL_IMG, IMG_SIZE_XSMALL} from '../const';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch, faFilter } from '@fortawesome/free-solid-svg-icons'
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group'; // ES6
 
 library.add({faSearch, faFilter})
 
@@ -20,6 +20,16 @@ class NavBar extends Component {
       value: '',
       suggestions: []
     };
+
+    this.genres = Genres.getFilterGenres().map((genre, i) => {
+      return (
+        <MenuItem eventKey={genre.id}>
+          <Checkbox id={genre.id}>{genre.name}</Checkbox>
+        </MenuItem>
+      )
+    })
+
+    console.log('GENRES', this.genres)
   }
 
   onChange = (event, {newValue, method}) => {
@@ -130,12 +140,7 @@ class NavBar extends Component {
       </Navbar.Form>
       <Nav pullRight>
         <NavDropdown eventKey={3} id="filterGenres" title="Filter Genres">
-          <MenuItem eventKey={3.1}>
-            <Checkbox checked readOnly>Genre 1</Checkbox>
-          </MenuItem>
-          <MenuItem eventKey={3.2}>
-            <Checkbox checked readOnly>Genre 2</Checkbox>
-          </MenuItem>
+          {this.genres}
         </NavDropdown>
       </Nav>
     </Navbar>);
