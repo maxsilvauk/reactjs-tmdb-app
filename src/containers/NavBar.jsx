@@ -4,7 +4,6 @@ import logo from '../assets/images/themoviedb_green.svg'
 import {connect} from 'react-redux'
 import {push} from 'react-router-redux'
 import Autosuggest from 'react-autosuggest'
-import Genres from '../helpers/Genres';
 import {URL_SEARCH, API_KEY_ALT, URL_IMG, IMG_SIZE_XSMALL} from '../const';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -13,7 +12,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group'; // ES6
 
 library.add({faSearch, faFilter})
 
-class SearchBar extends Component {
+class NavBar extends Component {
 
   constructor(props) {
     super(props);
@@ -108,16 +107,6 @@ class SearchBar extends Component {
       display: 'inline-block'
     }
 
-    console.log(this.props)
-
-    const max = {
-      // let movies = this.props.movies.filter(function(movie) {
-      //   return;
-      // }).map(function(movie) {
-      //
-      // });
-    }
-
     return (<Navbar bsStyle='inverse'>
       <Navbar.Header>
         <Navbar.Brand>
@@ -153,4 +142,4 @@ class SearchBar extends Component {
   }
 }
 
-export default connect()(SearchBar);
+export default connect()(NavBar);

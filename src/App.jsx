@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import SearchBar from './containers/SearchBar';
+import NavBar from './containers/NavBar';
 
 export default class App extends Component {
   render() {
     return(
       <div>
-        <SearchBar brand="MovieBox" searchText={''} />
+        <NavBar brand="MovieBox" searchText={''} />
         {this.props.children}
       </div>
     );

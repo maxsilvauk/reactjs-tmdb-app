@@ -131,6 +131,8 @@ function fetchTrailersFail(error) {
 export function searchMovieList(keyword) {
   let url = URL_SEARCH + keyword + API_KEY_ALT;
 
+  console.log('WE GET HERE')
+
   return function(dispatch){
     dispatch(searchMovie())
     return fetch(url)

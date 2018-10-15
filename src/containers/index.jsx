@@ -1,9 +1,9 @@
 import MovieContainer from './MovieContainer';
 import MovieDetail from './MovieDetail';
-import SearchBar from './SearchBar';
+import NavBar from './NavBar';
 
 export {
   MovieContainer,
   MovieDetail,
-  SearchBar
+  NavBar,
 };
