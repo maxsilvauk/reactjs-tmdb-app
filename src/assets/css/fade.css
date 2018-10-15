@@ -1,0 +1,39 @@
+.fade-appear,
+.fade-enter {
+    opacity: 0.01;
+}
+
+.fade-appear.fade-appear-active,
+.fade-enter.fade-enter-active {
+    opacity: 1;
+    transition: opacity .8s ease-in;
+}
+
+.fade-leave {
+    opacity: 1;
+}
+
+.fade-leave.fade-leave-active {
+    opacity: 0.01;
+    transition: opacity .8s ease-in;
+}
+
+.movieListFade-appear,
+.movieListFade-enter {
+    opacity: 0.01;
+}
+
+.movieListFade-appear.movieListFade-appear-active,
+.movieListFade-enter.fade-enter-active {
+    opacity: 1;
+    transition: opacity 2s ease-in;
+}
+
+.movieListFade-leave {
+    opacity: 1;
+}
+
+.movieListFade-leave.movieListFade-leave-active {
+    opacity: 0.01;
+    transition: opacity 2s ease-in;
+}

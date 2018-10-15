@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import { Navbar, Nav, NavDropdown, MenuItem, Image, FormGroup, Checkbox } from 'react-bootstrap/lib'
 import logo from '../assets/images/themoviedb_green.svg'
-import theme from '../assets/css/search.css' // eslint-disable-line
 import {connect} from 'react-redux'
 import {push} from 'react-router-redux'
 import Autosuggest from 'react-autosuggest'
@@ -10,6 +9,7 @@ import {URL_SEARCH, API_KEY_ALT, URL_IMG, IMG_SIZE_XSMALL} from '../const';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch, faFilter } from '@fortawesome/free-solid-svg-icons'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'; // ES6
 
 library.add({faSearch, faFilter})
 
@@ -121,12 +121,23 @@ class SearchBar extends Component {
     return (<Navbar bsStyle='inverse'>
       <Navbar.Header>
         <Navbar.Brand>
-          <a href="/"><Image src={logo} id="logo"/></a>
+          <a href="/">
+            <Image src={logo} id="logo" key="fade"/>
+          </a>
         </Navbar.Brand>
       </Navbar.Header>
       <Navbar.Form pullRight>
         <FontAwesomeIcon icon="search" style={searchIconStyle} />
-        <Autosuggest style={searchBoxStyle} suggestions={suggestions} onSuggestionsFetchRequested={this.onSuggestionsFetchRequested} onSuggestionSelected={this.onSuggestionSelected} onSuggestionsClearRequested={this.onSuggestionsClearRequested} getSuggestionValue={this.getSuggestionValue} renderSuggestion={this.renderSuggestion} inputProps={inputProps}/>
+        <Autosuggest
+          style={searchBoxStyle}
+          suggestions={suggestions}
+          onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+          onSuggestionSelected={this.onSuggestionSelected}
+          onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+          getSuggestionValue={this.getSuggestionValue}
+          renderSuggestion={this.renderSuggestion}
+          inputProps={inputProps}
+        />
       </Navbar.Form>
       <Nav pullRight>
         <NavDropdown eventKey={3} id="filterGenres" title="Filter Genres">

@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {MovieList, DisplayMsg} from '../components';
 import {connect} from 'react-redux';
 import {fetchMovieList, fetchGenresList, searchMovieList} from '../actions';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 class MovieContainer extends Component {
 
@@ -32,7 +33,16 @@ class MovieContainer extends Component {
     const {movies, genres} = this.props;
 
     if (movies.length > 0 && genres.length > 0) {
-      return (<MovieList movies={movies} genres={genres}/>);
+      return (
+        <ReactCSSTransitionGroup
+          transitionAppearTimeout={2000}
+          transitionEnterTimeout={2000}
+          transitionLeaveTimeout={2000}
+          transitionName="movieListFade"
+          transitionAppear={true}>
+          <MovieList movies={movies} genres={genres} key="movieList"/>
+        </ReactCSSTransitionGroup>
+      );
     } else {
       return (<DisplayMsg/>);
     }
