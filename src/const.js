@@ -10,5 +10,5 @@ export const IMG_SIZE_XSMALL = 'w45/';
 export const IMG_SIZE_SMALL = 'w150/';
 export const IMG_SIZE_LARGE = 'w342/';
 export const TRAILER_MAX_NUM = 3;
-export const API_KEY = '?api_key=51bfb5c91c339708b64436f67f3162d9';
-export const API_KEY_ALT = '&api_key=4d4ed145d3584846f5922b6a467e1f85';
+export const API_KEY = '?api_key=7a5fa07e6186a98de51f64d39d02a43f';
+export const API_KEY_ALT = '&api_key=51bfb5c91c339708b64436f67f3162d9';
