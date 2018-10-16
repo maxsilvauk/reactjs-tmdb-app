@@ -8,7 +8,7 @@ import { push } from 'react-router-redux'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch, faFilter } from '@fortawesome/free-solid-svg-icons'
-import { Navbar, Nav, NavDropdown, MenuItem, Image } from 'react-bootstrap/lib'
+import { Navbar, Nav, NavDropdown, Image } from 'react-bootstrap/lib'
 import {fetchGenresList} from '../actions';
 
 import Tooltip from 'rc-tooltip';
@@ -36,7 +36,7 @@ class NavBar extends Component {
     this.state = {
       value: '',
       suggestions: [],
-      checked: true
+      checkedItems: new Map()
     };
 
     this.handleFilterItemClick = this.handleFilterItemClick.bind(this);
@@ -166,10 +166,15 @@ class NavBar extends Component {
    * @param {object} event
    */
   handleFilterItemClick = (event) => {
-    this.setState({
-        checked: !this.state.checked
-    });
-    event.preventDefault();
+
+    console.log('woooo')
+    console.log(this.state.checkedItems)
+    const item = event.target.name;
+    const isChecked = event.target.checked;
+
+    this.setState(prevState => ({ checkedItems: prevState.checkedItems.set(item, isChecked) }));
+
+    console.log(this.state.checkedItems)
   }
 
   render() {
@@ -179,22 +184,25 @@ class NavBar extends Component {
       return (<DisplayMsg/>);
     }
 
+    // Need to fix this.
+    // 1. filterItem should be NavItem but that causes issues.
+    // 2. The label is empty so does not updat the checkbox once clicked.
     const filterGenres = genres.length > 0 ?
        Genres.getFilterGenres().map((genre, i) => {
         return (
-          <MenuItem key={i} onSelect={this.handleFilterItemClick}>
+          <li className="filterItem" key={i}>
             <div className="switch">
                <input
                  id={genre.name}
                  name={genre.name}
                  type="checkbox"
                  key={i}
-                 onChange={this.handleFilterItemClick}
-                 checked={this.state.checked} />
-               <label htmlFor={genre.name} className="label-default"></label>
+                 onClick={this.handleFilterItemClick}
+                 checked={this.state.checkedItems.get(genre.name)} />
+               <label htmlFor={genre.name}></label>
                {genre.name}
             </div>
-          </MenuItem>
+          </li>
         )
       }) : []
 

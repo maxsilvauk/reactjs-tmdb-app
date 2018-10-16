@@ -48,28 +48,35 @@
   border: 0px;
   overflow-y: auto;
   max-height: 490px;
+  -webkit-animation: fadeIn 0.45s;
+  animation: fadeIn 0.45s;
 }
 
-.dropdown-menu > li > a {
+.dropdown-menu > li {
   color: #9d9d9d;
   padding: 10px 18px;
   cursor: pointer;
 }
 
-.dropdown-menu > li > a:hover,
-.dropdown-menu > li > a:focus {
+.dropdown-menu > li:hover,
+.dropdown-menu > li:focus {
   background-color:rgba(0,0,0,0.4);
   background-image:none;
   color:white;
   outline: none;
-border: none !important;
--webkit-box-shadow: none !important;
--moz-box-shadow: none !important;
-box-shadow: none !important;
+  border: none !important;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  box-shadow: none !important;
 }
 
-.dropdown-menu > li > a:focus {
+.dropdown-menu > li:focus {
   color: #30d673;
+}
+
+.dropdown-menu label {
+  background-color: #30d673;
+  margin-right: 10px;
 }
 
 .dropdown-menu {
