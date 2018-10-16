@@ -35,8 +35,11 @@ class NavBar extends Component {
     super(props);
     this.state = {
       value: '',
-      suggestions: []
+      suggestions: [],
+      checked:1
     };
+
+    this.handleFilterItemClick = this.handleFilterItemClick.bind(this);
   }
 
   /**
@@ -162,8 +165,16 @@ class NavBar extends Component {
    * Prevent default browser behavior
    * @param {object} event
    */
-  handleFilterItemChange = (event) => {
-    console.log('we get here');
+  handleFilterItemClick = (e) => {
+    console.log("menu item clicked");
+  }
+
+  /**
+   * Represents preventDropDownClose()
+   * Prevent default browser behavior
+   * @param {object} event
+   */
+  preventDropDownClose = (event) => {
     event.stopPropagation();
   }
 
@@ -176,9 +187,15 @@ class NavBar extends Component {
 
     const genres = Genres.getFilterGenres().map((genre, i) => {
       return (
-        <MenuItem key={i} onClick={this.handleFilterItemClick}>
-          <div className="material-switch">
-             <input id={genre.name} name="genreOpt" type="checkbox" key={i} onChange={this.handleFilterItemChange} checked />
+        <MenuItem key={i} onSelect={this.preventDropDownClose}>
+          <div className="switch">
+             <input
+               id={genre.name}
+               name={genre.name}
+               type="checkbox"
+               key={i}
+               onChange={this.handleFilterItemClick}
+               checked={this.state.checked} />
              <label htmlFor={genre.name} className="label-default"></label>
              {genre.name}
           </div>
@@ -232,7 +249,7 @@ class NavBar extends Component {
       <Navbar.Text>{filterPopularityLabel}</Navbar.Text>
       <Slider
         min={0}
-        max={100}
+        max={505}
         defaultValue={3}
         handle={handle}
         step={0.5}
