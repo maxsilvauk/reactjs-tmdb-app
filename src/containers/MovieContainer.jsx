@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {MovieList, DisplayMsg} from '../components';
 import {connect} from 'react-redux';
-import {fetchMovieList, fetchGenresList, searchMovieList} from '../actions';
+import {fetchMovieList, searchMovieList} from '../actions';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 /**
@@ -9,7 +9,6 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
  * - The logic for an individual Movie is found here.
  */
 class MovieContainer extends Component {
-
   /**
    * Represents componentDidMount()
    * Invoked immediately after a component is mounted
@@ -18,7 +17,6 @@ class MovieContainer extends Component {
     if (!this.props.params.keyword) {
       const {dispatch} = this.props;
       dispatch(fetchMovieList());
-      dispatch(fetchGenresList());
     }
   }
 
@@ -48,11 +46,13 @@ class MovieContainer extends Component {
   }
 
   render() {
-    const {movies, genres, isFetcing_movies, isFetcing_genres} = this.props;
+    const {movies, isFetcing_movies} = this.props;
 
-    if (isFetcing_movies || isFetcing_genres) {
+    if (isFetcing_movies) {
       return (<DisplayMsg/>);
     }
+
+    const genres = JSON.parse(sessionStorage.getItem('genres'));
 
     if (movies.length > 0 && genres.length > 0) {
       return (
@@ -72,16 +72,14 @@ class MovieContainer extends Component {
 }
 
 function mapStateToProps(state, ownProps) {
-  const {movieList, genresList} = state;
+  const {movieList} = state;
 
-  const {isFetcing_genresList, items: genres, error_genresList} = genresList; // eslint-disable-line
   const {isFetcing_movieList, items: movies, error_movieList} = movieList; // eslint-disable-line
 
   const keyword = ownProps.params.keyword;
 
   return {
     movies,
-    genres,
     keyword
   }
 }

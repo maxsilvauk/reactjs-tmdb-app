@@ -5,7 +5,7 @@ export default class App extends Component {
   render() {
     return(
       <div>
-        <NavBar brand="MovieBox" searchText={''} />
+        <NavBar searchText={''} />
         {this.props.children}
       </div>
     );

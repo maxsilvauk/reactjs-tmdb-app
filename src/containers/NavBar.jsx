@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import { DisplayMsg } from '../components';
 import Genres from '../helpers/Genres';
 import Autosuggest from 'react-autosuggest'
 import logo from '../assets/images/themoviedb_green.svg'
@@ -8,6 +9,7 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch, faFilter } from '@fortawesome/free-solid-svg-icons'
 import { Navbar, Nav, NavDropdown, MenuItem, Image } from 'react-bootstrap/lib'
+import {fetchGenresList} from '../actions';
 
 import Tooltip from 'rc-tooltip';
 import Slider from 'rc-slider';
@@ -35,25 +37,16 @@ class NavBar extends Component {
       value: '',
       suggestions: []
     };
+  }
 
-    console.log('constructor')
-
-    this.handleFilterItemChange = (e) => {
-      console.log('we get here');
-      e.stopPropagation();
-    }
-
-    this.genres = Genres.getFilterGenres().map((genre, i) => {
-      return (
-        <MenuItem key={i} onClick={this.handleFilterItemClick}>
-          <div className="material-switch">
-             <input id={genre.name} name="genreOpt" type="checkbox" key={i} onChange={this.handleFilterItemChange} checked />
-             <label htmlFor={genre.name} className="label-default"></label>
-             {genre.name}
-          </div>
-        </MenuItem>
-      )
-    })
+  /**
+   * Represents componentDidMount()
+   * Invoked immediately after a component is mounted.
+   * Get all genres.
+   */
+  componentDidMount() {
+    const {dispatch} = this.props;
+    dispatch(fetchGenresList());
   }
 
   /**
@@ -175,6 +168,24 @@ class NavBar extends Component {
   }
 
   render() {
+    const {isFetcing_genres} = this.props;
+
+    if (isFetcing_genres) {
+      return (<DisplayMsg/>);
+    }
+
+    const genres = Genres.getFilterGenres().map((genre, i) => {
+      return (
+        <MenuItem key={i} onClick={this.handleFilterItemClick}>
+          <div className="material-switch">
+             <input id={genre.name} name="genreOpt" type="checkbox" key={i} onChange={this.handleFilterItemChange} checked />
+             <label htmlFor={genre.name} className="label-default"></label>
+             {genre.name}
+          </div>
+        </MenuItem>
+      )
+    })
+
     const {value, suggestions} = this.state;
 
     const filterPopularityLabel = 'Filter Popularity';
@@ -215,7 +226,7 @@ class NavBar extends Component {
       </Navbar.Header>
       <Nav pullLeft>
         <NavDropdown id="filterGenres" title="Filter Genres">
-          {this.genres}
+          {genres}
         </NavDropdown>
       </Nav>
       <Navbar.Text>{filterPopularityLabel}</Navbar.Text>
@@ -224,6 +235,7 @@ class NavBar extends Component {
         max={100}
         defaultValue={3}
         handle={handle}
+        step={0.5}
       />
       <Navbar.Form pullRight>
         <FontAwesomeIcon icon="search" className="search-icon-style" />
