@@ -38,7 +38,7 @@ class MovieDetail extends PureComponent {
   render() {
     const {movie, trailers, isFetcing_movie, isFetcing_trailers} = this.props;
 
-    if (!isFetcing_movie || !isFetcing_trailers) {
+    if (isFetcing_movie || isFetcing_trailers) {
       return (<DisplayMsg/>)  // This needs changing as this is used for MovieList.
     }
 
