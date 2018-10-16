@@ -177,16 +177,14 @@ class NavBar extends Component {
   render() {
     const {value, suggestions} = this.state;
 
+    const filterPopularityLabel = 'Filter Popularity';
+
     const inputProps = {
       value,
       onChange: this.onChange,
       onKeyPress: this.handleKeyDown,
       placeholder: 'Search movies'
     };
-
-    const searchIconStyle = {
-      display: 'inline-block'
-    }
 
     const createSliderWithTooltip = Slider.createSliderWithTooltip;
     const Range = createSliderWithTooltip(Slider.Range);
@@ -220,7 +218,7 @@ class NavBar extends Component {
           {this.genres}
         </NavDropdown>
       </Nav>
-      <Navbar.Text>Filter Popularity</Navbar.Text>
+      <Navbar.Text>{filterPopularityLabel}</Navbar.Text>
       <Slider
         min={0}
         max={100}
@@ -228,7 +226,7 @@ class NavBar extends Component {
         handle={handle}
       />
       <Navbar.Form pullRight>
-        <FontAwesomeIcon icon="search" style={searchIconStyle} />
+        <FontAwesomeIcon icon="search" className="search-icon-style" />
         <Autosuggest
           suggestions={suggestions}
           onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
