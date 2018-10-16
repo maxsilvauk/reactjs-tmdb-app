@@ -22,59 +22,53 @@
 
 ## Introduction
 
-A React 15.4.1 TMDB movie listing application. Data sourced from [TMDB](https://www.themoviedb.org). This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app) which has been built by the ReactJS devs.
+A ReactJS TMDB movie listing application. Data sourced from [TMDB](https://www.themoviedb.org). This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app) which has been built by the ReactJS devs.
 
 ## Notes
 * The application will require another page load for genres to be populated in dropdown
-Reason: the navbar renders the component before it has access to the genres. I have tried to get this to work but for some reason hit a mental block. You can see the first time the genres are loaded genres produces an empty array. The second time it is populated with data.
+Reason: The NavBar renders the component before it has access to the genres. Potential solution: https://stackoverflow.com/questions/42219577/state-is-empty-in-first-render
 
 * Filtering of genres
-Not Complete: Due to lack of available time I could not complete this.
-Solution: I would loop through the checked genres in the state and call a function that passes the genre name to sort through the movie list result excluding all movies that do not have that genre associated with it.
+Solution: Looping through the checked genres in the state and call a function that passes the genre name to sort through the movie list result excluding all movies that do not have that genre associated with it.
 
 * Filtering of popularity
-Not Complete: Due to lack of available time I could not complete this.
-Solution: I would create an array of popularity's and the highest number would become the slider component MAX value. When the user clicks the slider it would call a method which gets the popularity number selected from the slider and stores it in a state. Looping through the existing movie data set any movies with popularity higher than the popularity number selected would be removed from the movie set. The slider could also do with a scale at the bottom in numbers but thats personal preference.
+Solution: Create an array of popularity's and the highest number would become the slider component MAX value. When the user clicks the slider it would call a method which gets the popularity number selected from the slider and stores it in a state. Looping through the existing movie data set any movies with popularity higher than the popularity number selected would be removed from the movie set. The slider could also do with a scale at the bottom in numbers but thats personal preference.
 
 * Hiding the Filters on the movie page.
-Not Complete: Due to circumstances I did not have time to finish this.
 Solution: In the NavBar I would use this.props.location to detect if the user on a detail page and if so hide the components and not render any logic associated with them.
 
-* API stalls.
-Notes: Sometimes you will get a message when refreshing that the API is slow or to retry. This is because you can only have so many requests before TMDB locks down the requests. This is why there is an API_KEY and API_KEY_ALT (for searches). In Testing I had to generate two new api keys.
-Solution: After the first load I would use localStorage for storing the api calls with a timestamp associated. There should be some logic to check on page load to see if the timestamp is less than the one in local storage by 5 minutes this. If so use the data from localStorage else make new API requests.
+* API stalls. (Reason why I use a second TMDB key for searching. TMDB locked out making it a pain to dev)
+Solution: After the initial app load. We could use localStorage for storing the api calls with a timestamp associated. Then we can compare timestamps and see if has been 5minutes and make a new request.
 
 * CSS / Styling
-Notes: Due to lack of time I have not been able to put css into a LESS or SASS format into individual files and used webpack to compile to CSS. Also you may notice components/Poster.jsx has some styling in React. Thats just to show it can be done like this as-well. I would also like to remove the '../' and './' before path names using REACT or webpack.
+Notes: LESS/SASS using webpack to compile to CSS. A variables file. Would also like to remove the '../' and './' before path names using REACT or webpack.
 
 * Pagination of movies
-Not Complete: Due to circumstances I did not have time to finish this.
 Solution: Infinite scoll solution could be implemented to keep loading more pages of movies. Would require back to top button if you scrolled to far down.
 
 * Loading Screens
-Notes: There is one display message shown when movies are being fetched or there are no movies, genres etc.. However It would be nice to have an error and loading components to make this better.
+Notes: This is in place however could be more intuitive. We should have loading and error screens separate not one for all.
 
 * Languages file
 Notes: A languages object could be created and imported in components then as props to give access to different languages.
 
 * NavBar file
-Notes: This file is quite bloated just due to lack of time and could be made more manageable by being separated into components such as FilterGenres, FilterPopularity and Search.
+Notes: This file is quite bloated. Its contents and logic should  be separated into components such as FilterGenres, FilterPopularity and SearchBox.
 
 * Poster Component
-Notes: This is used in two places the MovieList and MovieDetail but it carry's the same styling this needs to be changed for MovieDetail.
+Notes: Is used in two places the MovieList and MovieDetail but it has the same styling this needs to be changed for MovieDetail.
 
 * Movie list
-Notes: This could be improved in some media queries I think the text needs resizing. You could also load the images as a fly in one by one instead of the overall fadein effect.
+Notes: In some widths the poster text size and padding requires altering.
 
-* Mobile size
-Notes: The popularity bar could be made to stretch across the whole width with a gutter to the right as it looks a little out of place. This can be said for the search bar at the bottom.
+* Mobile view:
+Notes: This all needs fine tuning. e.g. slider and search needs to take up more of the width of the viewport.
 
 ## Features
 
 * Displays a list of movies, each showing their title, genres and poster image.
-* Movies are ordered by popularity (most popular first).
-* Movies are filterable by multiple genres.
-* Movies are filterable by their rating.
+* Movies are ordered by popularity (most popular first). (Not complete)
+* Movies are filterable by multiple genres. (Not complete)
 * Auto-suggest movie title for search function.
 * View detail movie info including poster, trailers
 
@@ -111,7 +105,7 @@ yarn start
 ```
 http://localhost:30000
 ```
-* Test application with Jest (Nothing has been done here but could be done quite quickly)
+* Testing Jest (TDD/BDD testing can happen in this magical part!)
 ```
 yarn test
 ```
