@@ -6,7 +6,7 @@
 .fade-appear.fade-appear-active,
 .fade-enter.fade-enter-active {
     opacity: 1;
-    transition: opacity .8s ease-in;
+    transition: opacity .4s ease-in-out;
 }
 
 .fade-leave {
@@ -15,7 +15,7 @@
 
 .fade-leave.fade-leave-active {
     opacity: 0.01;
-    transition: opacity .8s ease-in;
+    transition: opacity .4s ease-in-out;
 }
 
 .movieListFade-appear,
@@ -26,7 +26,7 @@
 .movieListFade-appear.movieListFade-appear-active,
 .movieListFade-enter.fade-enter-active {
     opacity: 1;
-    transition: opacity 2s ease-in;
+    transition: opacity 2s ease-in-out;
 }
 
 .movieListFade-leave {
@@ -35,5 +35,5 @@
 
 .movieListFade-leave.movieListFade-leave-active {
     opacity: 0.01;
-    transition: opacity 2s ease-in;
+    transition: opacity 2s ease-in-out;
 }
