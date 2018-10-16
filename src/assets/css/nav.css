@@ -14,9 +14,12 @@
     height: 38px;
     width: auto;
     padding-left: 10px;
-    margin-top: -8px;
+    margin-top: -4px;
 }
 
+.navbar-inverse .navbar-text {
+  color: white;
+}
 .nav .dropdown {
     display:inline-block;
 }

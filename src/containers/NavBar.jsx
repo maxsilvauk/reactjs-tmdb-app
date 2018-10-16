@@ -7,12 +7,19 @@ import { push } from 'react-router-redux'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch, faFilter } from '@fortawesome/free-solid-svg-icons'
-import { Navbar, Nav, NavDropdown, MenuItem, Image, Checkbox } from 'react-bootstrap/lib'
+import { Navbar, Nav, NavDropdown, MenuItem, Image } from 'react-bootstrap/lib'
+
+import Tooltip from 'rc-tooltip';
+import Slider from 'rc-slider';
 
 import { URL_SEARCH, API_KEY_ALT, URL_IMG, IMG_SIZE_XSMALL } from '../const';
 
+import '../../node_modules/rc-slider/assets/index.css';
+import '../../node_modules/rc-tooltip/assets/bootstrap.css';
+
 import '../assets/css/nav.css';
 import '../assets/css/search.css';
+import '../assets/css/slider.css';
 
 library.add({faSearch, faFilter})
 
@@ -30,12 +37,18 @@ class NavBar extends Component {
     };
 
     console.log('constructor')
+
+    this.handleFilterItemChange = (e) => {
+      console.log('we get here');
+      e.stopPropagation();
+    }
+
     this.genres = Genres.getFilterGenres().map((genre, i) => {
       return (
         <MenuItem key={i} onClick={this.handleFilterItemClick}>
           <div className="material-switch">
-             <input id={genre.name} name="genreOpt" type="checkbox" key={i}/>
-             <label for={genre.name} className="label-default"></label>
+             <input id={genre.name} name="genreOpt" type="checkbox" key={i} onChange={this.handleFilterItemChange} checked />
+             <label htmlFor={genre.name} className="label-default"></label>
              {genre.name}
           </div>
         </MenuItem>
@@ -109,7 +122,8 @@ class NavBar extends Component {
     this.setState({value: ''});
   };
 
-  handleFilterItemClick = (e) => {
+  handleFilterItemChange = (e) => {
+    console.log('we get here');
     e.stopPropagation();
   }
 
@@ -127,6 +141,31 @@ class NavBar extends Component {
       display: 'inline-block'
     }
 
+    const wrapperStyle = {
+      width: '200px',
+      margin: '16px 0px',
+      display: 'inline-block'
+    }
+
+    const createSliderWithTooltip = Slider.createSliderWithTooltip;
+    const Range = createSliderWithTooltip(Slider.Range);
+    const Handle = Slider.Handle;
+
+    const handle = (props) => {
+      const { value, dragging, index, ...restProps } = props;
+      return (
+        <Tooltip
+          prefixCls="rc-slider-tooltip"
+          overlay={value}
+          visible={dragging}
+          placement="top"
+          key={index}
+        >
+          <Handle value={value} {...restProps} />
+        </Tooltip>
+      );
+    };
+
     return (<Navbar bsStyle="inverse">
       <Navbar.Header>
         <Navbar.Brand>
@@ -140,6 +179,15 @@ class NavBar extends Component {
           {this.genres}
         </NavDropdown>
       </Nav>
+      <Navbar.Text>
+        Filter Popularity
+      </Navbar.Text>
+      <Slider
+        min={0}
+        max={100}
+        defaultValue={3}
+        handle={handle}
+      />
       <Navbar.Form pullRight>
         <FontAwesomeIcon icon="search" style={searchIconStyle} />
         <Autosuggest

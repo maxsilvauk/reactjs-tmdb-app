@@ -1,0 +1,20 @@
+.rc-slider {
+  width:150px;
+  display:inline-block;
+  margin: 18px 0px;
+}
+
+.rc-slider-rail {
+  background-color: black;
+}
+
+.rc-slider-track {
+  background-color: #30d673;
+}
+
+.rc-slider-handle {
+  border:none;
+  margin-top: -4px;
+  width: 12px;
+  height: 12px;
+}
