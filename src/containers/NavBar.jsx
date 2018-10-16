@@ -36,7 +36,7 @@ class NavBar extends Component {
     this.state = {
       value: '',
       suggestions: [],
-      checkedItems: new Map()
+      checkedItems: new Map(),
     };
 
     this.handleFilterItemClick = this.handleFilterItemClick.bind(this);
@@ -166,15 +166,10 @@ class NavBar extends Component {
    * @param {object} event
    */
   handleFilterItemClick = (event) => {
-
-    console.log('woooo')
-    console.log(this.state.checkedItems)
     const item = event.target.name;
     const isChecked = event.target.checked;
 
     this.setState(prevState => ({ checkedItems: prevState.checkedItems.set(item, isChecked) }));
-
-    console.log(this.state.checkedItems)
   }
 
   render() {
@@ -184,11 +179,13 @@ class NavBar extends Component {
       return (<DisplayMsg/>);
     }
 
+    console.log('genres length', genres.length)
+
     // Need to fix this.
     // 1. filterItem should be NavItem but that causes issues.
     // 2. The label is empty so does not updat the checkbox once clicked.
     const filterGenres = genres.length > 0 ?
-       Genres.getFilterGenres().map((genre, i) => {
+       Genres.getFilterGenres(genres).map((genre, i) => {
         return (
           <li className="filterItem" key={i}>
             <div className="switch">
@@ -273,10 +270,10 @@ class NavBar extends Component {
   }
 }
 
-function mapStateToProps(state, ownProps) {
+function mapStateToProps(state) {
   const {genresList} = state;
 
-  const {isFetcing_genresList, items: genres, error_genresList} = genresList; // eslint-disable-line
+  const {items: genres} = genresList; // eslint-disable-line
   return {
     genres
   }

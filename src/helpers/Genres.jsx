@@ -24,9 +24,8 @@ Genres.getMovieListGenres = (movie) => {
  * Represents getFilterGenres()
  * Gets the list of unique genres for the filter.
  */
-Genres.getFilterGenres = () => {
+Genres.getFilterGenres = (genres) => {
   const movies = JSON.parse(sessionStorage.getItem('movies'));
-  const genres = JSON.parse(sessionStorage.getItem('genres'));
 
   let genreIds = [];
   let filterGenres = [];
