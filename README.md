@@ -40,12 +40,16 @@ Solution: I would create an array of popularity's and the highest number would b
 Not Complete: Due to circumstances I did not have time to finish this.
 Solution: In the NavBar I would use this.props.location to detect if the user on a detail page and if so hide the components and not render any logic associated with them.
 
-* API sometimes locks up
-Notes: Sometimes you will get a message when refreshing that the API is slow or to retry. This is because you can only have so many requests before TMDB locks down.
+* API stalls.
+Notes: Sometimes you will get a message when refreshing that the API is slow or to retry. This is because you can only have so many requests before TMDB locks down the requests. This is why there is an API_KEY and API_KEY_ALT (for searches). In Testing I had to generate two new api keys.
 Solution: After the first load I would use localStorage for storing the api calls with a timestamp associated. There should be some logic to check on page load to see if the timestamp is less than the one in local storage by 5 minutes this. If so use the data from localStorage else make new API requests.
 
 * CSS / Styling
 Notes: Due to lack of time I have not been able to put css into a LESS or SASS format into individual files and used webpack to compile to CSS. Also you may notice components/Poster.jsx has some styling in React. Thats just to show it can be done like this as-well. I would also like to remove the '../' and './' before path names using REACT or webpack.
+
+* Pagination of movies
+Not Complete: Due to circumstances I did not have time to finish this.
+Solution: Infinite scoll solution could be implemented to keep loading more pages of movies. Would require back to top button if you scrolled to far down. 
 
 * Loading Screens
 Notes: There is one display message shown when movies are being fetched or there are no movies, genres etc.. However It would be nice to have an error and loading components to make this better.
