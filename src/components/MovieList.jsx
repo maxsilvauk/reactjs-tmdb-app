@@ -1,9 +1,12 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import Poster from './Poster';
 import Genres from '../helpers/Genres';
-import {Link} from 'react-router';
-import {Grid, Row, Col} from 'react-bootstrap';
+import { Link } from 'react-router';
+import { Grid, Row, Col } from 'react-bootstrap';
 
+/**
+ * Represents the listing of the movies
+ */
 export default class MovieList extends Component {
 
   render() {
@@ -34,10 +37,12 @@ export default class MovieList extends Component {
       );
     });
 
-    return (<Grid fluid={false}>
-      <Row style={style}>
-        {movies}
-      </Row>
-    </Grid>);
+    return (
+      <Grid fluid={false}>
+        <Row style={style}>
+          {movies}
+        </Row>
+      </Grid>
+    );
   }
 }

@@ -1,17 +1,25 @@
 import React, {Component} from 'react'
 import Genres from '../helpers/Genres';
-import { Navbar, Nav, NavDropdown, MenuItem, Image, Checkbox } from 'react-bootstrap/lib'
-import logo from '../assets/images/themoviedb_green.svg'
-import {connect} from 'react-redux'
-import {push} from 'react-router-redux'
 import Autosuggest from 'react-autosuggest'
-import {URL_SEARCH, API_KEY_ALT, URL_IMG, IMG_SIZE_XSMALL} from '../const';
+import logo from '../assets/images/themoviedb_green.svg'
+import { connect } from 'react-redux'
+import { push } from 'react-router-redux'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch, faFilter } from '@fortawesome/free-solid-svg-icons'
+import { Navbar, Nav, NavDropdown, MenuItem, Image, Checkbox } from 'react-bootstrap/lib'
+
+import { URL_SEARCH, API_KEY_ALT, URL_IMG, IMG_SIZE_XSMALL } from '../const';
+
+import '../assets/css/nav.css';
+import '../assets/css/search.css';
 
 library.add({faSearch, faFilter})
 
+/**
+ * Represents the NavBar class.
+ * Here is where the majority of userinterface action happens
+ */
 class NavBar extends Component {
 
   constructor(props) {
@@ -21,15 +29,14 @@ class NavBar extends Component {
       suggestions: []
     };
 
-    this.genres = Genres.getFilterGenres().map((genre, i) => {
-      return (
-        <MenuItem eventKey={genre.id}>
-          <Checkbox id={genre.id}>{genre.name}</Checkbox>
-        </MenuItem>
-      )
-    })
-
-    console.log('GENRES', this.genres)
+    console.log('constructor')
+    // this.genres = Genres.getFilterGenres().map((genre, i) => {
+    //   return (
+    //     <MenuItem key={i} onClick={this.handleFilterItemClick}>
+    //       <Checkbox key={i} value={genre.id}>{genre.name}</Checkbox>
+    //     </MenuItem>
+    //   )
+    // })
   }
 
   onChange = (event, {newValue, method}) => {
@@ -56,15 +63,16 @@ class NavBar extends Component {
 
     if (trimmedValue.length > 0) {
       let url = URL_SEARCH + trimmedValue + API_KEY_ALT;
-      fetch(url).then(response => response.json()).then(json => json.results).then(data => {
+      fetch(url)
+        .then(response => response.json())
+        .then(json => json.results)
+        .then(data => {
         const results = data.map(movie => {
           let temp = {}
           temp.id = movie.id
           temp.title = movie.title
           temp.img = movie.poster_path
-          temp.year = (movie.release_date === "")
-            ? "0000"
-            : movie.release_date.substring(0, 4)
+          temp.year = (movie.release_date === "") ? "0000" : movie.release_date.substring(0, 4)
           return temp
         });
         this.setState({suggestions: results});
@@ -80,11 +88,9 @@ class NavBar extends Component {
 
   renderSuggestion = (suggestion) => {
     return (<a>
-      <img className="searchResult-image" src={suggestion.img == null
-          ? logo
-          : URL_IMG + IMG_SIZE_XSMALL + suggestion.img} role="presentation"/>
-      <div className="searchResult-text">
-        <div className="searchResult-name">
+      <img className="search-result-image" src={suggestion.img == null ? logo : URL_IMG + IMG_SIZE_XSMALL + suggestion.img} role="presentation"/>
+      <div className="search-result-text">
+        <div className="search-result-name">
           {suggestion.title}
         </div>
         <br/>
@@ -98,6 +104,10 @@ class NavBar extends Component {
     this.props.dispatch(push('/movie/' + suggestion.id));
     this.setState({value: ''});
   };
+
+  handleFilterItemClick = (e) => {
+    e.stopPropagation();
+  }
 
   render() {
     const {value, suggestions} = this.state;
@@ -113,11 +123,7 @@ class NavBar extends Component {
       display: 'inline-block'
     }
 
-    const searchBoxStyle = {
-      display: 'inline-block'
-    }
-
-    return (<Navbar bsStyle='inverse'>
+    return (<Navbar bsStyle="inverse">
       <Navbar.Header>
         <Navbar.Brand>
           <a href="/">
@@ -125,10 +131,14 @@ class NavBar extends Component {
           </a>
         </Navbar.Brand>
       </Navbar.Header>
+      <Nav pullLeft>
+        <NavDropdown id="filterGenres" title="Filter Genres">
+          {this.genres}
+        </NavDropdown>
+      </Nav>
       <Navbar.Form pullRight>
         <FontAwesomeIcon icon="search" style={searchIconStyle} />
         <Autosuggest
-          style={searchBoxStyle}
           suggestions={suggestions}
           onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
           onSuggestionSelected={this.onSuggestionSelected}
@@ -138,11 +148,6 @@ class NavBar extends Component {
           inputProps={inputProps}
         />
       </Navbar.Form>
-      <Nav pullRight>
-        <NavDropdown eventKey={3} id="filterGenres" title="Filter Genres">
-          {this.genres}
-        </NavDropdown>
-      </Nav>
     </Navbar>);
   }
 }

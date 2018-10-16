@@ -1,5 +1,9 @@
 import React from 'react';
 
+/**
+ * Represents the movie description
+ * @param {object} props - the props passed from MovieInfo
+ */
 export default function Description(props) {
 
   const style = {

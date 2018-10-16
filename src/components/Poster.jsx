@@ -8,8 +8,15 @@ import {faSmile, faPercent} from '@fortawesome/free-solid-svg-icons'
 
 library.add({faSmile, faPercent})
 
+/**
+ * Represents poster image used in movie listing and movie detail.
+ * @param {object} props - the props passed from MovieDetail or MovieList.
+ */
 export default function Poster(props) {
 
+  // I have left some styling in here. I know most large parts of the app
+  // such as Nav, Search etc.. have their own css folder. Just wanted to show
+  // how it could look if styling was left in the component.
   const Movie = styled.div `
     .title {
        opacity: 1;
@@ -74,7 +81,7 @@ export default function Poster(props) {
 
   return (
       <Movie>
-        <Overlay></Overlay>
+        <Overlay/>
         <Image key="movieListFade" src={URL_IMG + IMG_SIZE_LARGE + props.path} responsive/>
         {
           props.info && <Info className="title">

@@ -14,8 +14,6 @@ import {MovieContainer, MovieDetail} from './containers';
 import {DisplayMsg} from './components';
 
 import './assets/css/global.css';
-import './assets/css/nav.css';
-import './assets/css/search.css';
 import './assets/css/fade.css';
 
 const routeMiddleware = routerMiddleware(browserHistory);

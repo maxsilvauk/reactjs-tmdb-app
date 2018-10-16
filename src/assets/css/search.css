@@ -38,6 +38,7 @@
 
 .react-autosuggest__suggestions-container {
   display: none;
+  overflow-y: scroll;
 }
 
 .react-autosuggest__suggestions-container--open {
@@ -55,6 +56,8 @@
   border-bottom-right-radius: 4px;
   z-index: 3;
   color:white;
+  overflow-y: auto;
+  max-height: 490px;
 }
 
 .react-autosuggest__suggestions-list {
@@ -68,36 +71,43 @@
 
 .react-autosuggest__suggestion {
   cursor: pointer;
-  padding: 8px 20px 3px;
+  padding: 10px 25px 6px;
+  height: 50px;
+  margin-bottom: 10px;
 }
 
 .react-autosuggest__suggestion--highlighted {
   background:rgba(0,0,0,0.4);
+  margin-bottom: 10px;
 }
 
-.searchResult-text {
-  line-height: 21px;
+.search-result-text {
+  line-height: 10px;
   overflow: hidden;
   text-align: left;
   white-space: nowrap;
   padding-left:3px;
+  color: #9d9d9d;
+}
+
+.search-result-text:hover {
   color: white;
 }
 
-.searchResult-image {
-    width: 50px;
-    height: 50px;
-    float: left;
-    margin-right: 8px;
-    border-radius: 50px;
+.search-result-image {
+  width: 30px;
+  height: 30px;
+  float: left;
+  margin-right: 8px;
+  border-radius: 50px;
 }
 
-.searchResult-name {
-    font-weight: normal;
-    padding-top: 13px;
+.search-result-name {
+  font-weight: normal;
+  padding-top: 13px;
 }
 
-.searchResult-link {
+.search-result-link {
   display: block;
   padding: 5px;
 }

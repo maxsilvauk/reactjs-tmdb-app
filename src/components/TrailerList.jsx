@@ -1,8 +1,12 @@
 import React from 'react'
 import Trailer from './Trailer'
 
+/**
+ * Represents the trailer list
+ * @param {object} data - the trailer data
+ */
 export default function TrailerList({data}) {
-  
+
   let trailers = data.map(function(trailer) {
     return (<Trailer key={trailer.key} trailer={trailer.key}/>);
   });
@@ -14,10 +18,12 @@ export default function TrailerList({data}) {
   };
 
   if (trailers.length !== 0) {
-    return (<div>
-      <h3 style={style}>Trailers</h3>
-      {trailers}
-    </div>);
+    return (
+      <div>
+        <h3 style={style}>Trailers</h3>
+        {trailers}
+      </div>
+    );
   } else {
     return null;
   }

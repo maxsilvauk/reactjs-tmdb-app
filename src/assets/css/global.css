@@ -15,6 +15,7 @@ a {
 
 a:hover {
   color: #30d673;
+  text-decoration:none;
 }
 
 h1 {

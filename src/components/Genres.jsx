@@ -1,5 +1,9 @@
 import React from 'react';
 
+/**
+ * Represents the genres displayed in movie info.
+ * @param {object} genres - the genre data.
+ */
 export default function Genres(genres) {
   const listStyle = {
     'listStyleType': 'none',

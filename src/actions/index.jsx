@@ -8,7 +8,6 @@ import {
   API_KEY_ALT
 } from '../const';
 
-// action types
 export const SEARCH_MOVIE = 'SEARCH_MOVIE';
 export const SEARCH_MOVIE_SUCCESS = 'SEARCH_MOVIE_SUCCESS';
 export const SEARCH_MOVIE_FAILURE = 'SEARCH_MOVIE_FAILURE';
@@ -26,6 +25,11 @@ export const FETCH_TRAILERS = 'FETCH_TRAILERS';
 export const FETCH_TRAILERS_SUCCESS = 'FETCH_TRAILERS_SUCCESS';
 export const FETCH_TRAILERS_FAILURE = 'FETCH_TRAILERS_FAILURE';
 
+/**
+ * Represents searchMovie()
+ * Dispatch
+ * @param {string} searchText
+ */
 function searchMovie(searchText) {
   return {
     type: SEARCH_MOVIE,
@@ -33,6 +37,12 @@ function searchMovie(searchText) {
   };
 }
 
+/**
+ * Represents searchMovieSuccess()
+ * Dispatch
+ * @param {object} data
+ * @param {string} keyword
+ */
 function searchMovieSuccess(data, keyword) {
   return {
     type: SEARCH_MOVIE_SUCCESS,
@@ -41,6 +51,11 @@ function searchMovieSuccess(data, keyword) {
   };
 }
 
+/**
+ * Represents searchMovieFail()
+ * Dispatch
+ * @param {object} error
+ */
 function searchMovieFail(error) {
   return {
     type: SEARCH_MOVIE_FAILURE,
@@ -48,12 +63,21 @@ function searchMovieFail(error) {
   };
 }
 
+/**
+ * Represents searchGenres()
+ * Dispatch
+ */
 function fetchGenres() {
   return {
     type: FETCH_GENRES
   };
 }
 
+/**
+ * Represents fetchGenresSuccess()
+ * Dispatch
+ * @param {object} data
+ */
 function fetchGenresSuccess(data) {
   return {
     type: FETCH_GENRES_SUCCESS,
@@ -61,6 +85,11 @@ function fetchGenresSuccess(data) {
   };
 }
 
+/**
+ * Represents fetchGenresFail()
+ * Dispatch
+ * @param {object} error
+ */
 function fetchGenresFail(error) {
   return {
     type: FETCH_GENRES_FAILURE,
@@ -68,12 +97,21 @@ function fetchGenresFail(error) {
   };
 }
 
+/**
+ * Represents fetchMovies()
+ * Dispatch
+ */
 function fetchMovies() {
   return {
     type: FETCH_MOVIES
   };
 }
 
+/**
+ * Represents fetchMoviesSuccess()
+ * Dispatch
+ * @param {object} data
+ */
 function fetchMoviesSuccess(data) {
   return {
     type: FETCH_MOVIES_SUCCESS,
@@ -81,6 +119,11 @@ function fetchMoviesSuccess(data) {
   };
 }
 
+/**
+ * Represents fetchMoviesFail()
+ * Dispatch
+ * @param {object} error
+ */
 function fetchMoviesFail(error) {
   return {
     type: FETCH_MOVIES_FAILURE,
@@ -88,12 +131,21 @@ function fetchMoviesFail(error) {
   };
 }
 
+/**
+ * Represents fetchMovie()
+ * Dispatch
+ */
 function fetchMovie() {
   return {
     type: FETCH_MOVIE
   };
 }
 
+/**
+ * Represents fetchMoviesSuccess()
+ * Dispatch
+ * @param {object} data
+ */
 function fetchMovieSuccess(data) {
   return {
     type: FETCH_MOVIE_SUCCESS,
@@ -101,6 +153,11 @@ function fetchMovieSuccess(data) {
   };
 }
 
+/**
+ * Represents fetchMoviesFail()
+ * Dispatch
+ * @param {object} error
+ */
 function fetchMovieFail(error) {
   return {
     type: FETCH_MOVIE_FAILURE,
@@ -108,12 +165,20 @@ function fetchMovieFail(error) {
   };
 }
 
+/**
+ * Represents fetchTrailers()
+ * Dispatch
+ */
 function fetchTrailers() {
   return {
     type: FETCH_TRAILERS
   };
 }
 
+/**
+ * Represents fetchTrailersSuccess()
+ * Dispatch
+ */
 function fetchTrailersSuccess(data) {
   return {
     type: FETCH_TRAILERS_SUCCESS,
@@ -121,6 +186,11 @@ function fetchTrailersSuccess(data) {
   };
 }
 
+/**
+ * Represents fetchTrailersFail()
+ * Dispatch
+ * @param {object} error
+ */
 function fetchTrailersFail(error) {
   return {
     type: FETCH_TRAILERS_FAILURE,
@@ -128,6 +198,11 @@ function fetchTrailersFail(error) {
   };
 }
 
+/**
+ * Represents searchMovieList()
+ * API call for searching movies.
+ * @param {string} keyword - the search string.
+ */
 export function searchMovieList(keyword) {
   let url = URL_SEARCH + keyword + API_KEY_ALT;
 
@@ -141,11 +216,21 @@ export function searchMovieList(keyword) {
   }
 }
 
+/**
+ * Represents _onSetGenresSession()
+ * Sets the genres in the session.
+ * @param {object} dispatch
+ * @param {object} data
+ */
 const _onSetGenresSession = (dispatch, data) => {
   sessionStorage.setItem('genres', JSON.stringify(data));
   dispatch(fetchGenresSuccess(data))
 }
 
+/**
+ * Represents fetchGenresList()
+ * API call for fetching genres.
+ */
 export function fetchGenresList() {
   const url = URL_GENRES + API_KEY;
 
@@ -159,11 +244,22 @@ export function fetchGenresList() {
   }
 }
 
+/**
+ * Represents _onSetMoviesListSession
+ * Sets the movies in the session.
+ * @param {object} dispatch
+ * @param {object} data
+ */
 const _onSetMoviesListSession = (dispatch, data) => {
   sessionStorage.setItem('movies', JSON.stringify(data));
+  console.log('session set')
   dispatch(fetchMoviesSuccess(data))
 }
 
+/**
+ * Represents fetchMovieList()
+ * API call for fetching movies.
+ */
 export function fetchMovieList(option) {
   const url = URL_LIST + API_KEY;
 
@@ -177,6 +273,11 @@ export function fetchMovieList(option) {
   }
 }
 
+/**
+ * Represents fetchMovieDetail()
+ * API call for fetching movie detail.
+ * @param {number} id
+ */
 export function fetchMovieDetail(id) {
   const url = URL_DETAIL + id + API_KEY;
 
@@ -189,6 +290,11 @@ export function fetchMovieDetail(id) {
   }
 }
 
+/**
+ * Represents fetchTrailerList()
+ * API call for fetching trailers for a movie.
+ * @param {number} id - movie id.
+ */
 export function fetchTrailerList(id) {
   const url = URL_DETAIL + id + URL_VIDEO + API_KEY;
 

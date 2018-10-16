@@ -4,6 +4,10 @@ import {connect} from 'react-redux';
 import {fetchMovieList, fetchGenresList, searchMovieList} from '../actions';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
+/**
+ * Represents the MovieContainer Class.
+ * - The logic for an individual Movie is found here.
+ */
 class MovieContainer extends Component {
 
   componentDidMount() {
@@ -29,7 +33,11 @@ class MovieContainer extends Component {
   }
 
   render() {
-    const {movies, genres} = this.props;
+    const {movies, genres, isFetcing_movies, isFetcing_genres} = this.props;
+
+    if (isFetcing_movies || isFetcing_genres) {
+      return (<DisplayMsg/>);
+    }
 
     if (movies.length > 0 && genres.length > 0) {
       return (

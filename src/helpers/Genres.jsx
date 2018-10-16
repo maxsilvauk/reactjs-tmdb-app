@@ -1,5 +1,10 @@
 const Genres = {};
 
+/**
+ * Represents getMovieListGenres()
+ * Gets the genre name for the MovieListItem.
+ * @param {object} movie - the individual movie
+ */
 Genres.getMovieListGenres = (movie) => {
   const genres = JSON.parse(sessionStorage.getItem('genres'));
   let movieGenres = [];
@@ -15,7 +20,11 @@ Genres.getMovieListGenres = (movie) => {
   return movieGenres;
 };
 
-Genres.getFilterGenres = (movie) => {
+/**
+ * Represents getFilterGenres()
+ * Gets the list of unique genres for the filter.
+ */
+Genres.getFilterGenres = () => {
   const movies = JSON.parse(sessionStorage.getItem('movies'));
   const genres = JSON.parse(sessionStorage.getItem('genres'));
 

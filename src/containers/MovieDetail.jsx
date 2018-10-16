@@ -1,11 +1,15 @@
 import React, {Component} from 'react';
-import {TrailerList} from '../components';
+import {TrailerList, DisplayMsg} from '../components';
 import {TRAILER_MAX_NUM} from '../const';
 import {Grid, Row, Col} from 'react-bootstrap/lib';
 import {MovieInfo, Poster} from '../components';
 import {connect} from 'react-redux';
 import {fetchMovieDetail, fetchTrailerList} from '../actions';
 
+/**
+ * Represents the MovieDetail Class.
+ * - The logic for an individual Movie is found here.
+ */
 class MovieDetail extends Component {
 
   componentDidMount() {
@@ -26,7 +30,7 @@ class MovieDetail extends Component {
     const {movie, trailers, isFetcing_movie, isFetcing_trailers} = this.props;
 
     if (isFetcing_movie || isFetcing_trailers) {
-      return <p>loading...</p>
+      return (<DisplayMsg/>)  // This needs changing as this is used for MovieList.
     }
 
     if (movie.hasOwnProperty('id')) {
