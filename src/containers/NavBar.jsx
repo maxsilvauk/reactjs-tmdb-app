@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, {PureComponent} from 'react'
 import { DisplayMsg } from '../components';
 import Genres from '../helpers/Genres';
 import Autosuggest from 'react-autosuggest'
@@ -29,7 +29,7 @@ library.add({faSearch, faFilter})
  * Represents the NavBar class.
  * Here is where the majority of userinterface action happens
  */
-class NavBar extends Component {
+class NavBar extends PureComponent {
 
   constructor(props) {
     super(props);
@@ -178,8 +178,6 @@ class NavBar extends Component {
     if (isFetcing_genres) {
       return (<DisplayMsg/>);
     }
-
-    console.log('genres length', genres.length)
 
     // Need to fix this.
     // 1. filterItem should be NavItem but that causes issues.

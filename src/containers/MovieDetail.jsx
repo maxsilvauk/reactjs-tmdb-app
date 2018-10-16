@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import {TrailerList, DisplayMsg} from '../components';
 import {TRAILER_MAX_NUM} from '../const';
 import {Grid, Row, Col} from 'react-bootstrap/lib';
@@ -10,7 +10,7 @@ import {fetchMovieDetail, fetchTrailerList} from '../actions';
  * Represents the MovieDetail Class.
  * - The logic for an individual Movie is found here.
  */
-class MovieDetail extends Component {
+class MovieDetail extends PureComponent {
 
   /**
    * Represents componentDidMount()
@@ -38,7 +38,7 @@ class MovieDetail extends Component {
   render() {
     const {movie, trailers, isFetcing_movie, isFetcing_trailers} = this.props;
 
-    if (isFetcing_movie || isFetcing_trailers) {
+    if (!isFetcing_movie || !isFetcing_trailers) {
       return (<DisplayMsg/>)  // This needs changing as this is used for MovieList.
     }
 

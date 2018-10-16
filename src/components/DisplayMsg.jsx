@@ -22,7 +22,7 @@ export default function DisplayMsg(props) {
             transitionLeaveTimeout={400}
             transitionAppear={true}>
             <div className="displayMsgIcon">
-              <Image src={logo} id="logo" key="fade"/>
+              <Image src={logo} id="logo" key="displayMsgImage"/>
               <p className="displayMsgTitle" key="displayMsgTitle">Whooops!</p>
               <p className="displayMsgBody" key="displayMsgBody">TMDB API is being really slow or there have been too many requests. Click <a href="/">here</a> to retry.</p>
             </div>

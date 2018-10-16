@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import Poster from './Poster';
 import Genres from '../helpers/Genres';
 import { Link } from 'react-router';
@@ -7,7 +7,7 @@ import { Grid, Row, Col } from 'react-bootstrap';
 /**
  * Represents the listing of the movies
  */
-export default class MovieList extends Component {
+export default class MovieList extends PureComponent {
 
   render() {
 

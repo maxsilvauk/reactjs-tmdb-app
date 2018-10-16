@@ -49,7 +49,7 @@ Notes: Due to lack of time I have not been able to put css into a LESS or SASS f
 
 * Pagination of movies
 Not Complete: Due to circumstances I did not have time to finish this.
-Solution: Infinite scoll solution could be implemented to keep loading more pages of movies. Would require back to top button if you scrolled to far down. 
+Solution: Infinite scoll solution could be implemented to keep loading more pages of movies. Would require back to top button if you scrolled to far down.
 
 * Loading Screens
 Notes: There is one display message shown when movies are being fetched or there are no movies, genres etc.. However It would be nice to have an error and loading components to make this better.
@@ -111,7 +111,7 @@ yarn start
 ```
 http://localhost:30000
 ```
-* Test application with Jest (Facebook testing suite built on Jasmine) - Need to complete!!
+* Test application with Jest (Nothing has been done here but could be done quite quickly)
 ```
 yarn test
 ```

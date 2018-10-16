@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import {MovieList, DisplayMsg} from '../components';
 import {connect} from 'react-redux';
 import {fetchMovieList, searchMovieList} from '../actions';
@@ -8,7 +8,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
  * Represents the MovieContainer Class.
  * - The logic for an individual Movie is found here.
  */
-class MovieContainer extends Component {
+class MovieContainer extends PureComponent {
   /**
    * Represents componentDidMount()
    * Invoked immediately after a component is mounted
