@@ -12,12 +12,21 @@ import {fetchMovieDetail, fetchTrailerList} from '../actions';
  */
 class MovieDetail extends Component {
 
+  /**
+   * Represents componentDidMount()
+   * Invoked immediately after a component is mounted
+   */
   componentDidMount() {
     const {dispatch} = this.props;
     dispatch(fetchMovieDetail(this.props.params.id));
     dispatch(fetchTrailerList(this.props.params.id));
   }
 
+  /**
+   * Represents componentWillReceiveProps()
+   * Is invoked before a mounted component receives new props.
+   * @param {object} nextProps
+   */
   componentWillReceiveProps(nextProps) {
     const {dispatch} = this.props;
     if (nextProps.params.id && this.props.params.id !== nextProps.params.id) {

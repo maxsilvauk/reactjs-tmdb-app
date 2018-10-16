@@ -10,6 +10,10 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
  */
 class MovieContainer extends Component {
 
+  /**
+   * Represents componentDidMount()
+   * Invoked immediately after a component is mounted
+   */
   componentDidMount() {
     if (!this.props.params.keyword) {
       const {dispatch} = this.props;
@@ -18,6 +22,11 @@ class MovieContainer extends Component {
     }
   }
 
+  /**
+   * Represents componentWillReceiveProps()
+   * Is invoked before a mounted component receives new props.
+   * @param {object} nextProps
+   */
   componentWillReceiveProps(nextProps) {
     const {dispatch} = this.props;
     if (nextProps.params.keyword && this.props.params.keyword !== nextProps.params.keyword) {
@@ -25,6 +34,12 @@ class MovieContainer extends Component {
     }
   }
 
+  /**
+   * Represents shouldComponentUpdate()
+   * Every time we start an Update in a Component, we will re-render.
+   * @param {object} nextProps
+   * @param {object} nextState
+   */
   shouldComponentUpdate(nextProps, nextState) {
     if (this.props.movies !== nextProps.movies) {
       return true;

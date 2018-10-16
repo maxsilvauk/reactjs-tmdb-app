@@ -56,25 +56,51 @@ class NavBar extends Component {
     })
   }
 
+  /**
+   * Represents onChange()
+   * The state gets updated on ele value change.
+   * @param {object} event
+   * @param {newValue} string
+   */
   onChange = (event, {newValue, method}) => {
     this.setState({value: newValue});
   };
 
+  /**
+   * Represents handleKeyDown()
+   * If 'enter' is pressed submit the form.
+   * @param {object} event - The event.
+   */
   handleKeyDown = (event) => {
     if (event.key == 'Enter') { // eslint-disable-line
       return this.handleSubmit(this.state.value);
     }
   }
 
+  /**
+   * Represents handleSubmit()
+   * Submit the form.
+   * @param {string} searchText - The search keyword.
+   */
   handleSubmit = (searchText) => {
     this.props.dispatch(push('/search/' + searchText));
     this.setState({value: ''});
   }
 
+  /**
+   * Represents getSuggestionValue()
+   * Suggestion Title
+   * @param {object} suggestion - Movie data.
+   */
   getSuggestionValue = (suggestion) => {
     return suggestion.title;
   };
 
+  /**
+   * Represents onSuggestionsFetchRequested()
+   * API call for fetching the new suggestion.
+   * @param {string} value - Movie data.
+   */
   onSuggestionsFetchRequested = ({value}) => {
     const trimmedValue = value.trim();
 
@@ -99,10 +125,19 @@ class NavBar extends Component {
     }
   }
 
+  /**
+   * Represents onSuggestionsClearRequested()
+   * Clear the suggestion state.
+   */
   onSuggestionsClearRequested = () => {
     this.setState({suggestions: []});
   };
 
+  /**
+   * Represents renderSuggestion()
+   * Build the HTML for search result.
+   * @param {object} suggestion - Movie data.
+   */
   renderSuggestion = (suggestion) => {
     return (<a>
       <img className="search-result-image" src={suggestion.img == null ? logo : URL_IMG + IMG_SIZE_XSMALL + suggestion.img} role="presentation"/>
@@ -115,16 +150,28 @@ class NavBar extends Component {
     </a>);
   };
 
+  /**
+   * Represents onSuggestionSelected()
+   * Prevent default browser behavior, dispatch and reset state.
+   * @param {object} event
+   */
   onSuggestionSelected = (event, {suggestion, method}) => {
-    if (method === 'enter')
+    if (method === 'enter') {
       event.preventDefault();
+    }
+
     this.props.dispatch(push('/movie/' + suggestion.id));
     this.setState({value: ''});
   };
 
-  handleFilterItemChange = (e) => {
+  /**
+   * Represents handleFilterItemChange()
+   * Prevent default browser behavior
+   * @param {object} event
+   */
+  handleFilterItemChange = (event) => {
     console.log('we get here');
-    e.stopPropagation();
+    event.stopPropagation();
   }
 
   render() {
@@ -138,12 +185,6 @@ class NavBar extends Component {
     };
 
     const searchIconStyle = {
-      display: 'inline-block'
-    }
-
-    const wrapperStyle = {
-      width: '200px',
-      margin: '16px 0px',
       display: 'inline-block'
     }
 
@@ -179,9 +220,7 @@ class NavBar extends Component {
           {this.genres}
         </NavDropdown>
       </Nav>
-      <Navbar.Text>
-        Filter Popularity
-      </Navbar.Text>
+      <Navbar.Text>Filter Popularity</Navbar.Text>
       <Slider
         min={0}
         max={100}
