@@ -73,12 +73,10 @@
   cursor: pointer;
   padding: 10px 25px 6px;
   height: 50px;
-  margin-bottom: 10px;
 }
 
 .react-autosuggest__suggestion--highlighted {
   background:rgba(0,0,0,0.4);
-  margin-bottom: 10px;
 }
 
 .search-result-text {
