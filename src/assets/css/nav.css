@@ -48,6 +48,7 @@
   border: 0px;
   overflow-y: auto;
   max-height: 490px;
+  width: 200px;
   -webkit-animation: fadeIn 0.45s;
   animation: fadeIn 0.45s;
 }

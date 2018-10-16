@@ -94,6 +94,7 @@
 .search-result-name {
   font-weight: normal;
   padding-top: 13px;
+  margin-top: -3px;
 }
 
 .search-result-link {
