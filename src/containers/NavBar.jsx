@@ -36,7 +36,7 @@ class NavBar extends Component {
     this.state = {
       value: '',
       suggestions: [],
-      checked:1
+      checked: true
     };
 
     this.handleFilterItemClick = this.handleFilterItemClick.bind(this);
@@ -162,46 +162,41 @@ class NavBar extends Component {
 
   /**
    * Represents handleFilterItemChange()
-   * Prevent default browser behavior
+   * Change state of checkbox
    * @param {object} event
    */
-  handleFilterItemClick = (e) => {
-    console.log("menu item clicked");
-  }
-
-  /**
-   * Represents preventDropDownClose()
-   * Prevent default browser behavior
-   * @param {object} event
-   */
-  preventDropDownClose = (event) => {
-    event.stopPropagation();
+  handleFilterItemClick = (event) => {
+    this.setState({
+        checked: !this.state.checked
+    });
+    event.preventDefault();
   }
 
   render() {
-    const {isFetcing_genres} = this.props;
+    const {genres, isFetcing_genres} = this.props;
 
     if (isFetcing_genres) {
       return (<DisplayMsg/>);
     }
 
-    const genres = Genres.getFilterGenres().map((genre, i) => {
-      return (
-        <MenuItem key={i} onSelect={this.preventDropDownClose}>
-          <div className="switch">
-             <input
-               id={genre.name}
-               name={genre.name}
-               type="checkbox"
-               key={i}
-               onChange={this.handleFilterItemClick}
-               checked={this.state.checked} />
-             <label htmlFor={genre.name} className="label-default"></label>
-             {genre.name}
-          </div>
-        </MenuItem>
-      )
-    })
+    const filterGenres = genres.length > 0 ?
+       Genres.getFilterGenres().map((genre, i) => {
+        return (
+          <MenuItem key={i} onSelect={this.handleFilterItemClick}>
+            <div className="switch">
+               <input
+                 id={genre.name}
+                 name={genre.name}
+                 type="checkbox"
+                 key={i}
+                 onChange={this.handleFilterItemClick}
+                 checked={this.state.checked} />
+               <label htmlFor={genre.name} className="label-default"></label>
+               {genre.name}
+            </div>
+          </MenuItem>
+        )
+      }) : []
 
     const {value, suggestions} = this.state;
 
@@ -243,7 +238,7 @@ class NavBar extends Component {
       </Navbar.Header>
       <Nav pullLeft>
         <NavDropdown id="filterGenres" title="Filter Genres">
-          {genres}
+          {filterGenres}
         </NavDropdown>
       </Nav>
       <Navbar.Text>{filterPopularityLabel}</Navbar.Text>
@@ -270,4 +265,13 @@ class NavBar extends Component {
   }
 }
 
-export default connect()(NavBar);
+function mapStateToProps(state, ownProps) {
+  const {genresList} = state;
+
+  const {isFetcing_genresList, items: genres, error_genresList} = genresList; // eslint-disable-line
+  return {
+    genres
+  }
+}
+
+export default connect(mapStateToProps)(NavBar);
