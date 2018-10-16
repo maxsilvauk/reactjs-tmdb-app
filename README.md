@@ -34,7 +34,7 @@ Solution: I would loop through the checked genres in the state and call a functi
 
 * Filtering of popularity
 Not Complete: Due to lack of available time I could not complete this.
-Solution: I would create an array of popularity's and the highest number would become the slider component MAX value. When the user clicks the slider it would call a method which gets the popularity number selected from the slider and stores it in a state. Looping through the existing movie data set any movies with popularity higher than the popularity number selected would be removed from the movie set.
+Solution: I would create an array of popularity's and the highest number would become the slider component MAX value. When the user clicks the slider it would call a method which gets the popularity number selected from the slider and stores it in a state. Looping through the existing movie data set any movies with popularity higher than the popularity number selected would be removed from the movie set. The slider could also do with a scale at the bottom in numbers but thats personal preference.
 
 * Hiding the Filters on the movie page.
 Not Complete: Due to circumstances I did not have time to finish this.
@@ -62,6 +62,9 @@ Notes: This is used in two places the MovieList and MovieDetail but it carry's t
 * Movie list
 Notes: This could be improved in some media queries I think the text needs resizing. You could also load the images as a fly in one by one instead of the overall fadein effect.
 
+* Mobile size
+Notes: The popularity bar could be made to stretch across the whole width with a gutter to the right as it looks a little out of place. This can be said for the search bar at the bottom.
+
 ## Features
 
 * Displays a list of movies, each showing their title, genres and poster image.
@@ -69,7 +72,7 @@ Notes: This could be improved in some media queries I think the text needs resiz
 * Movies are filterable by multiple genres.
 * Movies are filterable by their rating.
 * Auto-suggest movie title for search function.
-* View detail movie info including poster, casts, trailers
+* View detail movie info including poster, trailers
 
 ## Technical Notes
 
