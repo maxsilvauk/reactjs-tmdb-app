@@ -30,13 +30,17 @@ class NavBar extends Component {
     };
 
     console.log('constructor')
-    // this.genres = Genres.getFilterGenres().map((genre, i) => {
-    //   return (
-    //     <MenuItem key={i} onClick={this.handleFilterItemClick}>
-    //       <Checkbox key={i} value={genre.id}>{genre.name}</Checkbox>
-    //     </MenuItem>
-    //   )
-    // })
+    this.genres = Genres.getFilterGenres().map((genre, i) => {
+      return (
+        <MenuItem key={i} onClick={this.handleFilterItemClick}>
+          <div className="material-switch">
+             <input id={genre.name} name="genreOpt" type="checkbox" key={i}/>
+             <label for={genre.name} className="label-default"></label>
+             {genre.name}
+          </div>
+        </MenuItem>
+      )
+    })
   }
 
   onChange = (event, {newValue, method}) => {
