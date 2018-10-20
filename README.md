@@ -30,6 +30,7 @@ Reason: The NavBar renders the component before it has access to the genres. Pot
 
 * Filtering of genres
 Solution: Looping through the checked genres in the state and call a function that passes the genre name to sort through the movie list result excluding all movies that do not have that genre associated with it.
+Also: The label needs text to allow once clicked to check or uncheck a checkbox. But it needs to be of a transparent colour using rgba with a span div containing the genre with a higher z-index property overlayed. 
 
 * Filtering of popularity
 Solution: Create an array of popularity's and the highest number would become the slider component MAX value. When the user clicks the slider it would call a method which gets the popularity number selected from the slider and stores it in a state. Looping through the existing movie data set any movies with popularity higher than the popularity number selected would be removed from the movie set. The slider could also do with a scale at the bottom in numbers but thats personal preference.
