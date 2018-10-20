@@ -173,7 +173,9 @@ class NavBar extends PureComponent {
   }
 
   render() {
-    const {genres, isFetcing_genres} = this.props;
+    const {genres, isFetcing_genres, pathname } = this.props;
+
+    const ifMovieDetail = pathname.includes('movie') ? true : false;
 
     if (isFetcing_genres) {
       return (<DisplayMsg/>);
@@ -239,12 +241,17 @@ class NavBar extends PureComponent {
           </a>
         </Navbar.Brand>
       </Navbar.Header>
+      { !ifMovieDetail &&
       <Nav pullLeft>
         <NavDropdown id="filterGenres" title="Filter Genres">
           {filterGenres}
         </NavDropdown>
       </Nav>
+      }
+      { !ifMovieDetail &&
       <Navbar.Text>{filterPopularityLabel}</Navbar.Text>
+      }
+      { !ifMovieDetail &&
       <Slider
         min={0}
         max={505}
@@ -252,6 +259,7 @@ class NavBar extends PureComponent {
         handle={handle}
         step={0.5}
       />
+      }
       <Navbar.Form pullRight>
         <FontAwesomeIcon icon="search" className="search-icon-style" />
         <Autosuggest
